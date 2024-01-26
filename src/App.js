@@ -33,20 +33,23 @@ function App() {
    },[selectedCountry])
 
    useEffect(() =>{
-    if(selectedCountry && selectedState){
-      async function getCities(){
-        let res;
-        try{
-          res = await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`);
+    if(selectedState){
+       
+        axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
+        .then((res) =>  {
           setCities(res.data);
           setSelectedCity('');
-        }catch(err){
-            console.log(err);
         }
+        ).catch((err) => console.log(err));
+        // try{
+        //   res = await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`);
+        //   setCities(res.data);
+        //   setSelectedCity('');
+        // }catch(err){
+        //     console.log(err);
+        // }
      }
-     getCities();
-    }
-   },[selectedState,selectedCountry])
+   },[selectedState])
 
 
   return (
