@@ -12,11 +12,11 @@ function App() {
   const [selectedCity,setSelectedCity] = useState('');
 
   useEffect(() =>{
-   async function getCountries(){
-      const res = await axios.get('https://crio-location-selector.onrender.com/countries');
-      setCountries(res.data);
+   axios.get('https://crio-location-selector.onrender.com/countries')
+   .then((res) =>  {
+    setCountries(res.data);
    }
-   getCountries();
+   ).catch((err) => console.log(err));
   },[])
 
   useEffect(() =>{
