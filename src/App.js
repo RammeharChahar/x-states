@@ -21,14 +21,14 @@ function App() {
 
   useEffect(() =>{
     if(selectedCountry){
-      async function getStates(){
-        const res = await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`);
+      axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
+      .then((res) =>  {
         setStates(res.data);
         setSelectedState('');
         setCities([]);
         setSelectedCity('');
-     }
-     getStates();
+      }
+      ).catch((err) => console.log(err));
     }
    },[selectedCountry])
 
